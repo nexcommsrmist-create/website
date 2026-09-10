@@ -1,0 +1,9 @@
+{
+  "name": "nexcom-community",
+  "version": "1.0.0",
+  "description": "NEXCOM Community ECE Club Website with Firebase",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  }
+}

@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NEX-COMM Community ECE club at SRM Tiruchirappalli. Join our club inauguration on August 10, 2026. Register for Antenna Duel & CST Workshop.">
+  <meta name="keywords" content="NEX-COMM, SRM Trichy, ECE club, Antenna Duel Simulation, CST Studio Suite, YUVA Tech Fest 2026, club inauguration">
+  <meta name="author" content="NEX-COMM Community SRM Trichy">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nexcom-srmtrichy.org/">
+  <meta property="og:title" content="NEX-COMM @ SRM Trichy | Official Club Inauguration & ECE Events">
+  <meta property="og:description" content="NEX-COMM is launching at SRM Tiruchirappalli. Register for YUVA Tech Fest events: Antenna Duel and CST Antenna Design Workshop.">
+  <meta property="og:image" content="assets/logo.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://nexcom-srmtrichy.org/">
+  <meta property="twitter:title" content="NEX-COMM @ SRM Trichy | Official Club Inauguration & ECE Events">
+  <meta property="twitter:description" content="NEX-COMM is launching at SRM Tiruchirappalli. Register for YUVA Tech Fest events: Antenna Duel and CST Antenna Design Workshop.">
+  <meta property="twitter:image" content="assets/logo.jpg">
+
+  <title>NEX-COMM @ SRM Trichy | Official Club Inauguration & ECE Events</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- JS (Deferred) -->
+  <script type="module" src="main.js" defer></script>
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "NEX-COMM Community SRM Trichy",
+    "url": "https://nexcom-srmtrichy.org/",
+    "logo": "https://nexcom-srmtrichy.org/assets/logo.jpg",
+    "description": "NEX-COMM is a premier student-led ECE club at SRM Tiruchirappalli focusing on Antenna Duel simulations, RF Telemetry, and FPGA VLSI co-processors.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tiruchirappalli",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "621105",
+      "addressCountry": "IN"
+    },
+    "knowsAbout": ["Electronic Engineering", "Antenna Simulation", "CST Studio Suite", "RF Telemetry", "VLSI"]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo" id="nav-logo">
+        <img src="assets/logo.jpeg" alt="NEX-COMM Phoenix Logo" class="nav-logo-img">
+        <span class="logo-text">NEX-COMM <span class="logo-campus">SRM TRICHY</span></span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#event-duel" class="nav-link">Antenna Duel</a>
+        <a href="#workshop" class="nav-link">Workshop</a>
+        <a href="#rules-section" class="nav-link">Rulebook</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#programs" class="nav-link">Programs</a>
+        <a href="#join" class="nav-btn-mobile nav-btn">Join Now</a>
+      </nav>
+
+      <!-- Navbar Actions -->
+      <div class="nav-actions">
+        <!-- Light/Dark Toggle -->
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+
+        <!-- Unauthenticated Login triggers -->
+        <a href="#join" class="nav-login-btn-class">Sign In</a>
+
+        <!-- Authenticated Profile Menu -->
+        <div class="user-dropdown-wrapper" id="user-dropdown-wrapper" style="display: none;">
+          <button class="user-profile-trigger" id="user-profile-trigger" aria-label="User menu">
+            <img src="" alt="User profile avatar" class="user-navbar-avatar" id="user-navbar-avatar">
+            <span class="user-navbar-username" id="user-navbar-username">user</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="user-dropdown-menu" id="user-dropdown-menu">
+            <div class="dropdown-header">
+              <div class="dropdown-user-email" id="dropdown-user-email">email@srmist.edu</div>
+              <div class="dropdown-user-provider" id="dropdown-user-provider">via Google</div>
+            </div>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item logout" id="logout-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" x2="9" y1="12" y2="12"></line></svg>
+              Log Out
+            </button>
+          </div>
+        </div>
+
+        <!-- Hamburger Icon for Mobile -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+   <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-bg-overlay"></div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <span style="background-color: #007bff; color: #fff; padding: 6px 14px; border-radius: 50px; font-size: 14px; font-weight: bold; margin-bottom: 15px; display: inline-block;">
+            🚀 Open to students from all colleges & universities
+          </span>
+          <h1 class="hero-title fade-in">
+            NEX-COMM Community.<br>
+            <span class="text-stroke">Taking Flight.</span>
+          </h1>
+          <p class="hero-subtitle fade-in">
+            NEX-COMM Community at SRM Institute of Science and Technology Tiruchirappalli. Join our ECE academic network to simulate, design, and tap out tomorrow's hardware.
+          </p>
+          <div class="hero-actions fade-in">
+            <a href="#join" class="btn btn-primary">Apply for Membership</a>
+            <a href="#event-duel" class="btn btn-outline">Explore Tech Fest Events</a>
+          </div>
+        </div>
+        
+        <!-- Interactive Tech Deck (ECE Terminal Mockup) -->
+        <div class="hero-visual fade-in">
+          <div class="card-visual-wrapper">
+            <div class="card-glow"></div>
+            <div class="card-visual">
+              <div class="card-header-bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="terminal-title">nexcomm-sys.sh</span>
+              </div>
+              <div class="terminal-body">
+                <p class="term-line prompt">~ $ npx start nex-comm-platform</p>
+                <p class="term-line success">✓ Bootstrapping SRM Trichy Node...</p>
+                <p class="term-line text">✓ Loading Antenna Duel & RF modules</p>
+                <p class="term-line text">✓ Establishing hardware connections</p>
+                <p class="term-line success">✓ NEX-COMM network active. Welcome!</p>
+                <p class="term-line prompt">~ $ ./display-logos.sh</p>
+                <div class="terminal-graphic-container">
+                  <img src="assets/logo.jpeg" alt="NEX-COMM Logo 1" class="terminal-graphic-img logo-1">
+                  <img src="assets/logo2.jpeg" alt="NEX-COMM Logo 2" class="terminal-graphic-img logo-2">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Antenna Duel Flagship Event Section -->
+    <section class="event-teaser section-padding bg-alt" id="event-duel">
+      <div class="container">
+        <div class="event-teaser-layout">
+          <div class="event-teaser-poster fade-up">
+            <div class="poster-glow"></div>
+            <img src="assets/antenna_duel.png" alt="NEX-COMM Presents Antenna Duel poster featuring Smith Charts and Radiation Patterns" class="poster-img" loading="lazy">
+          </div>
+          
+          <div class="event-teaser-content fade-up">
+            <span class="section-tagline">7YUVA TECH FEST — FLAGSHIP EVENT</span>
+            <h2 class="section-title">ANTENNA DUEL Simulation Shootout</h2>
+            <p class="event-teaser-desc">
+              A high-intensity, real-time antenna simulation competition that challenges participants to design and optimize microstrip patch antennas under time pressure using CST Studio Suite.
+            </p>
+            
+            <div class="event-details-grid">
+              <div class="detail-cell">
+                <strong>Event Date:</strong>
+                <span>Will be Announce soon</span>
+              </div>
+              <div class="detail-cell">
+                <strong>Mode of Conduct:</strong>
+                <span>Offline (Computer Lab)</span>
+              </div>
+              <div class="detail-cell">
+                <strong>Registration Fee:</strong>
+                <span>₹ 500/- per team</span>
+              </div>
+              <div class="detail-cell">
+                <strong>Team Size:</strong>
+                <span>Minimum 2 | Maximum 3</span>
+              </div>
+              <div class="detail-cell">
+                <strong>Duration:</strong>
+                <span>6 Hours (Reporting: 9:00 AM)</span>
+              </div>
+              <div class="detail-cell">
+                <strong>Prize Pool:</strong>
+                <span>₹ 7,000 (1st: ₹4k | 2nd: ₹2k | 3rd: ₹1k)</span>
+              </div>
+            </div>
+
+            <div class="event-teaser-quote">
+              <p>Inspired by industrial RF design sprints, teams are given an identical design brief and must race to achieve the best-performing antenna simulation. The competition culminates in a live re-optimization twist round that separates good engineers from great ones.</p>
+            </div>
+
+            <!-- Scoring Parameters Table -->
+            <div class="specs-table-wrapper">
+              <h4 class="specs-table-title">Round 1 Evaluation Parameters</h4>
+              <table class="specs-table">
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>Points</th>
+                    <th>Target Goal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>S11 Return Loss</strong></td>
+                    <td>40 pts</td>
+                    <td>&lt; −10 dB at design frequency</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Antenna Gain (dBi)</strong></td>
+                    <td>30 pts</td>
+                    <td>Maximize within targeted band</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Radiation Pattern Symmetry</strong></td>
+                    <td>20 pts</td>
+                    <td>Clean broadside radiation pattern</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Design Compactness</strong></td>
+                    <td>10 pts</td>
+                    <td>Smallest physical footprint wins tiebreaker</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="teaser-actions">
+              <button id="teaser-notify-btn" class="btn btn-primary btn-icon" type="button" onclick="alert('Registration will be announced soon, please be patient.')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                Register for Event
+              </button>
+              <a href="#rules-section" class="btn btn-outline">Read Event Rules</a>
+            </div>
+            
+            <div class="event-hashtags">
+              <span>#AntennaDuel</span>
+              <span>#NEXCOMM</span>
+              <span>#YUVATechFest</span>
+              <span>#SRMIST</span>
+              <span>#RFEngineering</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CST Antenna Design Workshop Section (New Rules PDF data) -->
+    <section class="workshop section-padding" id="workshop">
+      <div class="container">
+        <div class="workshop-layout">
+          <div class="workshop-info fade-up">
+            <span class="section-tagline">7YUVA TECH FEST — CLUB WORKSHOP</span>
+            <h2 class="section-title">Antenna Design & RF Simulation using CST Studio Suite</h2>
+            <p class="workshop-intro">
+              A fully hands-on, practical workshop on microstrip antenna design and RF simulation using CST Studio Suite—one of the industry's leading 3D electromagnetic simulation tools. Conducted with technical support from <strong>Dassault Systèmes</strong> under SRM IST's existing MoU.
+            </p>
+            
+            <div class="workshop-meta-grid">
+              <div class="meta-box">
+                <span class="meta-val">₹ 299/-</span>
+                <span class="meta-lbl">Fee per participant</span>
+              </div>
+              <div class="meta-box">
+                <span class="meta-val">6 Hours</span>
+                <span class="meta-lbl">Workshop Duration</span>
+              </div>
+              <div class="meta-box">
+                <span class="meta-val">Offline</span>
+                <span class="meta-lbl">Mode of Conduct</span>
+              </div>
+              <div class="meta-box">
+                <span class="meta-val">e-Certificate</span>
+                <span class="meta-lbl">Nationally Recognized</span>
+              </div>
+            </div>
+
+            <p class="workshop-outcome">
+              The session concludes with each participant completing a working <strong>2.4 GHz Wi-Fi patch antenna simulation</strong>. Submitting the final simulation project screenshot qualifies participants for a workshop certificate.
+            </p>
+
+            <div class="teaser-actions">
+              <a href="#join" class="btn btn-primary">Book Workshop Seat</a>
+              <a href="#rules-section" class="btn btn-outline">Read Workshop Rules</a>
+            </div>
+          </div>
+
+          <!-- Workshop Timeline -->
+          <div class="workshop-timeline-wrapper fade-up">
+            <h3 class="timeline-title-header">Workshop Syllabus & Timeline</h3>
+            <div class="w-timeline">
+              <div class="w-timeline-step">
+                <span class="w-time">9:15 AM</span>
+                <div class="w-desc">
+                  <strong>Registration & Seating</strong>
+                  <p>Check-in verification at the Computer Lab.</p>
+                </div>
+              </div>
+              <div class="w-timeline-step">
+                <span class="w-time">9:30 AM</span>
+                <div class="w-desc">
+                  <strong>Module 1: CST & Antenna Fundamentals</strong>
+                  <p>Introduction to the CST interface, EM basics, and parameters.</p>
+                </div>
+              </div>
+              <div class="w-timeline-step">
+                <span class="w-time">10:30 AM</span>
+                <div class="w-desc">
+                  <strong>Module 2: Microstrip Patch Antenna Design</strong>
+                  <p>Setting up substrate geometry, grounds, and microstrip feeds.</p>
+                </div>
+              </div>
+              <div class="w-timeline-step">
+                <span class="w-time">12:15 PM</span>
+                <div class="w-desc">
+                  <strong>Module 3: Parametric Sweeps & S11 Analysis</strong>
+                  <p>Running sweeps, plotting S-parameters, and tuning resonance.</p>
+                </div>
+              </div>
+              <div class="w-timeline-step">
+                <span class="w-time">2:00 PM</span>
+                <div class="w-desc">
+                  <strong>Module 4: Radiation Pattern & Gain Analysis</strong>
+                  <p>3D far-field radiation patterns, directivity, and efficiency.</p>
+                </div>
+              </div>
+              <div class="w-timeline-step">
+                <span class="w-time">3:00 PM</span>
+                <div class="w-desc">
+                  <strong>Module 5: Mini Project & Certificates</strong>
+                  <p>Finalizing the 2.4 GHz simulation, Q&A, and project submission.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rulebook Section (New Tabbed Layout) -->
+    <section class="rules-section section-padding bg-alt" id="rules-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tagline">OFFICIAL RULEBOOK</span>
+          <h2 class="section-title">General Rules & Guidelines</h2>
+          <p class="section-desc">Review the official YUVA Tech Fest rulebook parameters for both Antenna Duel and the CST Simulation Workshop.</p>
+        </div>
+
+        <div class="tab-container fade-up">
+          <div class="tab-list" role="tablist" aria-label="Rulebooks">
+            <button class="tab-trigger active" role="tab" aria-selected="true" aria-controls="panel-rules-duel" id="tab-rules-duel">Antenna Duel Rules</button>
+            <button class="tab-trigger" role="tab" aria-selected="false" aria-controls="panel-rules-workshop" id="tab-rules-workshop">Workshop Rules</button>
+          </div>
+
+          <!-- Antenna Duel Rules -->
+          <div class="tab-panel active" id="panel-rules-duel" role="tabpanel" aria-labelledby="tab-rules-duel">
+            <div class="rules-list-grid">
+              <div class="rule-box">
+                <span class="rule-num">1</span>
+                <p>Participants must carry a valid college ID proof and event registration/participation confirmation at all times during the fest.</p>
+              </div>
+              <div class="rule-box">
+                <span class="rule-num">2</span>
+                <p>All team members must report to the Computer Lab no later than 9:00 AM. Latecomers will forfeit their team’s slot without refund.</p>
+              </div>
+              <div class="rule-box">
+                <span class="rule-num">3</span>
+                <p>Participation is strictly open to registered YUVA TECH FEST 2026 attendees only. No walk-in entries will be accepted on the event day.</p>
+              </div>
+              <div class="rule-box">
+                <span class="rule-num">4</span>
+                <p>All design work must be performed live on the provided workstation systems during the event. Pre-built or pre-optimized CST project files brought from outside are strictly prohibited and will result in immediate disqualification.</p>
+              </div>
+              <div class="rule-box">
+                <span class="rule-num">5</span>
+                <p>Each team is permitted to use only one workstation. Sharing of design files, screenshots, or simulation results between teams during the competition constitutes cheating and will lead to disqualification of all involved teams.</p>
+              </div>
+              <div class="rule-box">
+                <span class="rule-num">6</span>
+                <p>Any form of verbal, written, or digital communication regarding design parameters or results between teams during live rounds is strictly prohibited.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Workshop Rules -->
+          <div class="tab-panel" id="panel-rules-workshop" role="tabpanel" aria-labelledby="tab-rules-workshop">
+            <div class="rules-list-grid">
+              <div class="rule-box">
+                <span class="rule-num">1</span>
+                <p>Participants must be seated and ready in the Computer Lab at least 15 minutes before the workshop start time (by 9:15 AM). The session will begin promptly at 9:30 AM.</p>
+              </div>
+              <div class="rule-box">
+                <span class="rule-num">2</span>
+                <p>All participants must use only the CST Studio project template shared by the instructor at the start of the session. Independently constructed or pre-built antenna projects are not permitted as starting points.</p>
+              </div>
+              <div class="rule-box">
+                <span class="rule-num">3</span>
+                <p>This is a 100% live simulation session. Participants are expected to follow and execute every step in real time alongside the instructor. Skipping steps or using pre-completed stages is not permitted.</p>
+              </div>
+              <div class="rule-box">
+                <span class="rule-num">4</span>
+                <p>A mandatory mid-session progress check will be conducted at approximately the 3-hour mark. Participants must demonstrate a functional antenna model in CST with S-parameter plots to remain eligible for the certificate.</p>
+              </div>
+              <div class="rule-box">
+                <span class="rule-num">5</span>
+                <p>Full and uninterrupted attendance for the entire 6-hour session is compulsory to qualify for the nationally recognized workshop e-certificate. Participants who leave before the session ends will not be eligible.</p>
+              </div>
+              <div class="rule-box">
+                <span class="rule-num">6</span>
+                <p>At the conclusion of the workshop, participants must export their final simulation result (screenshot of S11 plot and 3D far-field pattern) and submit it through the official Google Form shared by the coordinator.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section-padding" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tagline">WHAT IS NEX-COMM?</span>
+          <h2 class="section-title">Explore communication technology beyond classroom theory.</h2>
+          <p class="section-desc">Learn. Build. Research. Compete. We are a student-driven ecosystem where you simulate, experiment, build, and create practical technical solutions.</p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Pillar 1 -->
+          <div class="pillar-card fade-up">
+            <div class="pillar-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-radio"><path d="M4.9 19.1C3.1 17.3 2 14.8 2 12c0-2.8 1.1-5.3 2.9-7.1"/><path d="M8.4 15.6c-.9-.9-1.4-2.2-1.4-3.6 0-1.4.5-2.7 1.4-3.6"/><circle cx="12" cy="12" r="2"/><path d="M15.6 15.6c.9-.9 1.4-2.2 1.4-3.6 0-1.4-.5-2.7-1.4-3.6"/><path d="M19.1 19.1c1.8-1.8 2.9-4.3 2.9-7.1 0-2.8-1.1-5.3-2.9-7.1"/></svg>
+            </div>
+            <h3 class="pillar-title">Antennas & RF</h3>
+            <p class="pillar-text">Design microstrip antennas, model RF systems, and master simulation software like CST Studio Suite and HFSS.</p>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="pillar-card fade-up">
+            <div class="pillar-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wifi"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg>
+            </div>
+            <h3 class="pillar-title">Wireless & 5G/6G</h3>
+            <p class="pillar-text">Dive into the future of network connectivity, analyzing beamforming, phased arrays, and next-generation transmission networks.</p>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="pillar-card fade-up">
+            <div class="pillar-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-satellite"><path d="M13 7 9 3 5 7l4 4"/><path d="m17 11 4 4-4 4-4-4"/><path d="m8 12 4 4 6-6-4-4Z"/><path d="m16 8 3-3"/><path d="M9 21a6 6 0 0 0-6-6"/></svg>
+            </div>
+            <h3 class="pillar-title">Satellite & Space Comm</h3>
+            <p class="pillar-text">Understand orbital links, CubeSat communication modules, and Doppler shift effects on space telemetry.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs section-padding bg-alt" id="programs">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tagline">OUR PROCESS</span>
+          <h2 class="section-title">Learn. Simulate. Build. Test. Compete.</h2>
+          <p class="section-desc">We don't just learn theory. We put it into practice. Discover your direction from fundamentals to hardware prototypes.</p>
+        </div>
+
+        <!-- Program Tabs Switcher -->
+        <div class="tab-container fade-up">
+          <div class="tab-list" role="tablist" aria-label="Learning programs">
+            <button class="tab-trigger active" role="tab" aria-selected="true" aria-controls="panel-rf" id="tab-rf">Antennas & RF</button>
+            <button class="tab-trigger" role="tab" aria-selected="false" aria-controls="panel-signals" id="tab-signals">Signals & SDR</button>
+            <button class="tab-trigger" role="tab" aria-selected="false" aria-controls="panel-competitions" id="tab-competitions">Projects & Competitions</button>
+          </div>
+
+          <!-- Antennas & RF Panel -->
+          <div class="tab-panel active" id="panel-rf" role="tabpanel" aria-labelledby="tab-rf">
+            <div class="program-content">
+              <div class="program-text">
+                <h3>Antennas & RF Design</h3>
+                <p class="program-desc">From a concept on paper to a working hardware prototype. Master the foundation of modern wireless technology.</p>
+                <div class="syllabus-outline">
+                  <h4>Key Modules Covered:</h4>
+                  <ul class="program-features">
+                    <li><strong>Learn:</strong> RF fundamentals and antenna parameters.</li>
+                    <li><strong>Simulate:</strong> Design using CST Studio Suite, HFSS, and MATLAB.</li>
+                    <li><strong>Build:</strong> Fabricate microstrip patch antennas and RF components.</li>
+                    <li><strong>Test:</strong> Take real-world measurements using VNAs and S-Parameters.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="program-visual">
+                <img src="assets/antenna_duel.png" alt="Antenna simulation software interface" class="program-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- Signals & SDR Panel -->
+          <div class="tab-panel" id="panel-signals" role="tabpanel" aria-labelledby="tab-signals">
+            <div class="program-content">
+              <div class="program-text">
+                <h3>Signals & SDR</h3>
+                <p class="program-desc">What happens behind every wireless connection? Analyze and manipulate the invisible waves that connect our devices.</p>
+                <div class="syllabus-outline">
+                  <h4>Key Modules Covered:</h4>
+                  <ul class="program-features">
+                    <li><strong>Signal Processing:</strong> Digital signal processing and waveform analysis.</li>
+                    <li><strong>SDR (Software Defined Radio):</strong> Experimenting with live radio frequencies.</li>
+                    <li><strong>Embedded DSP:</strong> Implementing algorithms on hardware.</li>
+                    <li><strong>Network Analysis:</strong> Exploring how devices, antennas, and networks communicate.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="program-visual">
+                <img src="assets/signals_program.jpg" alt="Signal processing waveforms" class="program-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- Projects & Competitions Panel -->
+          <div class="tab-panel" id="panel-competitions" role="tabpanel" aria-labelledby="tab-competitions">
+            <div class="program-content">
+              <div class="program-text">
+                <h3>Projects & Competitions</h3>
+                <p class="program-desc">Take your ideas further through technical projects, research, and high-stakes competitions like Antenna DUEL.</p>
+                <div class="syllabus-outline">
+                  <h4>Opportunities:</h4>
+                  <ul class="program-features">
+                    <li><strong>Technical Competitions:</strong> Apply knowledge under real constraints.</li>
+                    <li><strong>Hands-On Workshops:</strong> Real-world design and simulation tutorials.</li>
+                    <li><strong>Research:</strong> Prepare for higher studies with documentation and publications.</li>
+                    <li><strong>Hardware Systems:</strong> Build and showcase your own ECE prototypes.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="program-visual">
+                <img src="assets/chips_program.jpg" alt="Students competing in technical events" class="program-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- Bio-Telemetry RF Panel -->
+          <div class="tab-panel" id="panel-signals" role="tabpanel" aria-labelledby="tab-signals">
+            <div class="program-content">
+              <div class="program-text">
+                <h3>Wireless Transmission & Modulation</h3>
+                <p class="program-desc">Study the physical communication systems that link bio-sensors to hospital monitors. Model RF path loss, analyze modulation schemes, and evaluate signal attenuation under ambient noise.</p>
+                <div class="syllabus-outline">
+                  <h4>Key Modules Covered:</h4>
+                  <ul class="program-features">
+                    <li><strong>RF Telemetry Modulation:</strong> Digital modulations (QPSK, FSK, QAM) under AWGN noise.</li>
+                    <li><strong>Antenna Parameters:</strong> Simulating radiation patterns, return loss, Smith charts, and VSWR.</li>
+                    <li><strong>Link Budget Analysis:</strong> Path loss models and receiver noise margins.</li>
+                    <li><strong>Error Control:</strong> Hamming codes and cyclic redundancy checks (CRC).</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="program-visual">
+                <img src="assets/antenna_duel.png" alt="Smith Charts and Antenna Duel design graphics" class="program-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- FPGA Chip Design Panel -->
+          <div class="tab-panel" id="panel-chips" role="tabpanel" aria-labelledby="tab-chips">
+            <div class="program-content">
+              <div class="program-text">
+                <h3>HDL Modeling & Hardware Co-Processors</h3>
+                <p class="program-desc">Translate filtering mathematical equations into RTL code. Implement custom digital signal processors directly on silicon wafers, analyzing gate count, latency, and power efficiency.</p>
+                <div class="syllabus-outline">
+                  <h4>Key Modules Covered:</h4>
+                  <ul class="program-features">
+                    <li><strong>RTL Hardware Synthesis:</strong> SystemVerilog modeling of logic arrays and FIR filters.</li>
+                    <li><strong>Silicon Layout constraints:</strong> Wafer routing, CMOS gate delay, parasitical extractions.</li>
+                    <li><strong>Error Metrics:</strong> Testing hardware layouts for bit error rates (BER).</li>
+                    <li><strong>Verification:</strong> Design Rule Checking (DRC) and layout vs. schematic (LVS).</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="program-visual">
+                <img src="assets/chips_program.jpg" alt="Microchip Layout and Silicon Junction Design Diagram" class="program-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Join Us Section -->
+    <section class="join section-padding" id="join">
+      <div class="container">
+        <div class="join-layout">
+          <div class="join-info">
+            <span class="section-tagline">BECOME A MEMBER</span>
+            <h2 class="section-title">Join our ECE network.</h2>
+            <p class="join-desc">Applications for the Fall 2026 ECE cohort are open to students of all years. Submit your details below, and our committee will contact you for a brief chat to align your path. For support queries, email us at <strong>nexcomm.srmist@gmail.com</strong>.</p>
+            
+            <div class="join-requirements">
+              <h4>Interview Preparation:</h4>
+              <ul>
+                <li>Basic understanding of binary and circuit logic</li>
+                <li>Curiosity about signals and hardware systems</li>
+                <li>A project you want to simulate or build</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="auth-container" style="margin-bottom: 30px; padding: 20px; border: 1px solid #333; border-radius: 8px;">
+            <h4 style="margin-bottom: 15px;">Sign In or Create Account</h4>
+            <input type="text" id="name-input" placeholder="Full Name" style="margin-bottom: 10px; width: 100%; padding: 10px;">
+            <input type="email" id="email-input" placeholder="Academic Email For eg @srmist.edu.in" style="margin-bottom: 10px; width: 100%; padding: 10px;">
+            <input type="password" id="password-input" placeholder="Password" style="margin-bottom: 10px; width: 100%; padding: 10px;">
+            <input type="password" id="confirm-password-input" placeholder="Confirm Password" style="margin-bottom: 15px; width: 100%; padding: 10px;">
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button id="sign-up-btn" style="padding: 10px 15px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Sign Up</button>
+              <button id="sign-in-btn" style="padding: 10px 15px; background-color: #333; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Sign In</button>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Auth Dialog Modal -->
+  <div id="auth-modal" class="auth-modal-overlay" aria-hidden="true" role="dialog">
+    <div class="auth-modal-container">
+      <button class="auth-modal-close" id="auth-close-btn" aria-label="Close modal">&times;</button>
+      
+      <!-- Pane 1: Provider selection -->
+      <div id="auth-pane-providers" class="auth-pane active">
+        <h3 class="auth-modal-title">Connect to NEX-COMM</h3>
+        <p class="auth-modal-desc">Log in to your student profile to access interactive hardware labs and track event registrations.</p>
+        <div class="social-auth-buttons">
+          <button id="auth-google-btn" class="btn-social google">
+            <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+            </svg>
+            Continue with Google
+          </button>
+          
+        </div>
+      </div>
+
+      <!-- Pane 2: Mock OAuth redirect simulation -->
+      <div id="auth-pane-redirect" class="auth-pane">
+        <div class="oauth-loading-container">
+          <div class="oauth-spinner"></div>
+        </div>
+        <h3 id="oauth-redirect-title" class="auth-modal-title">Connecting to Google...</h3>
+        <p class="auth-modal-desc">Authenticating secure handshake. Verifying digital identity certificates.</p>
+        <div class="oauth-simulate-box">
+          <img id="oauth-avatar-preview" src="https://api.dicebear.com/7.x/pixel-art/svg?seed=nexcom" alt="Profile preview avatar" class="oauth-preview-img">
+          <div id="oauth-email-preview" class="oauth-preview-email">loading-credentials...</div>
+        </div>
+      </div>
+
+      <!-- Pane 3: Username selection if first-time signin -->
+      <div id="auth-pane-external" class="auth-pane">
+        <h3 class="auth-modal-title">External Student Details</h3>
+        <p class="auth-modal-desc">Since you are not using an SRM email, please provide your college details to complete registration.</p>
+        <form id="external-details-form" class="apply-form" novalidate><div class="form-group"><label for="ext-college">College Name</label><input type="text" id="ext-college" required></div><div class="form-group"><label for="ext-dept">Department</label><input type="text" id="ext-dept" required></div><div class="form-group"><label for="ext-year">Year of Study</label><input type="text" id="ext-year" required></div><button type="submit" class="btn btn-primary" style="width:100%; margin-top:15px;">Complete Registration</button></form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="footer-logo">
+            <img src="assets/logo.jpeg" alt="NEX-COMM Logo" class="footer-logo-img">
+            <span class="logo-text">NEX-COMM <span class="logo-campus">SRM TRICHY</span></span>
+          </a>
+          <p class="footer-motto">Educating students of all academic years in the disciplines of Electronic and Communication Engineering.</p>
+          <p class="footer-contact-info">Email: <a href="mailto:nexcomm.srmist@gmail.com">nexcomm.srmist@gmail.com</a></p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <a href="#home">Home</a>
+          <a href="#event-duel">Antenna Duel</a>
+          <a href="#workshop">Workshop</a>
+          <a href="#rules-section">Rulebook</a>
+          <a href="#about">About</a>
+          <a href="#programs">Programs</a>
+        </div>
+
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Code of Conduct</a>
+          <a href="https://github.com/nexcomcommunity" target="_blank" rel="noopener noreferrer">GitHub Org</a>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4>NEXCOM Newsletters</h4>
+          <p>Get lab notifications, workshop invitations, and hardware project updates weekly.</p>
+          <form id="newsletter-form" class="newsletter-form" novalidate>
+            <input type="email" id="news-email" placeholder="your@email.com" aria-label="Newsletter email input" required>
+            <button type="submit" class="btn btn-sm">Subscribe</button>
+          </form>
+          <span class="newsletter-success" id="news-success">Subscribed successfully!</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 NEX-COMM Community SRM Trichy. All Rights Reserved. Built with minimalist hardware design tokens.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Twitter profile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </a>
+          <a href="#" aria-label="GitHub Organization">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn profile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+<footer style="text-align: center; padding: 40px 20px; margin-top: 40px; border-top: 1px solid #333;">
+      <div class="footer-content">
+        <h3>Contact Us</h3>
+        <p>SRM Institute of Science and Technology, Tiruchirappalli Campus</p>
+        <p><a href="mailto:nexcomm.srmist@gmail.com" style="color: #007bff; text-decoration: none; font-weight: bold;">nexcomm.srmist@gmail.com</a></p>
+      </div>
+    </footer>
+ </body>
+</html>
+
+
+
+
