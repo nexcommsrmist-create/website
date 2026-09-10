@@ -333,24 +333,33 @@ window.addEventListener('scroll', () => {
 
   // Panes
   const panes = {
-    providers: document.getElementById('auth-pane-providers'),
-    redirect: document.getElementById('auth-pane-redirect'),
-    external: document.getElementById('auth-pane-external')
-  };
+      signin: document.getElementById('auth-pane-signin'),
+      signup: document.getElementById('auth-pane-signup'),
+      external: document.getElementById('auth-pane-external')
+    };
 
   
   const allowedDomain = "@srmist.edu.in";
 
   // Form Inputs (Email/Password)
-  const nameInput = document.getElementById("name-input");
-  const emailInput = document.getElementById("email-input");
-  const passwordInput = document.getElementById("password-input");
-  const confirmPasswordInput = document.getElementById("confirm-password-input");
-  const authContainer = document.querySelector(".auth-container");
-  const signUpBtn = document.getElementById("sign-up-btn");
-  const signInBtn = document.getElementById("sign-in-btn");
-
-  const switchPane = (activePaneName) => {
+  
+    // Form Inputs (Sign Up)
+    const nameInput = document.getElementById("name-input");
+    const emailInput = document.getElementById("email-input");
+    const passwordInput = document.getElementById("password-input");
+    const confirmPasswordInput = document.getElementById("confirm-password-input");
+    const signUpBtn = document.getElementById("sign-up-btn");
+    
+    // Form Inputs (Sign In)
+    const signinEmailInput = document.getElementById("signin-email");
+    const signinPasswordInput = document.getElementById("signin-password");
+    const signInBtn = document.getElementById("sign-in-btn");
+    
+    const openAuthModalBtn = document.getElementById("open-auth-modal-btn");
+    
+    const authContainerReplacement = document.querySelector(".auth-container-replacement");
+    
+const switchPane = (activePaneName) => {
     Object.keys(panes).forEach(paneKey => {
       if (paneKey === activePaneName) {
         panes[paneKey].classList.add('active');
@@ -362,10 +371,10 @@ window.addEventListener('scroll', () => {
 
   const updateAuthStateUI = async (user) => {
     if (user) {
-      navLoginBtn.style.display = 'none';
+      if (navLoginBtn) navLoginBtn.style.display = 'none';
       if (navJoinBtn) navJoinBtn.style.display = 'none';
       userDropdownWrapper.style.display = 'inline-flex';
-      if (authContainer) authContainer.style.display = 'none';
+      if (authContainerReplacement) authContainerReplacement.style.display = 'none';
 
       let userName = user.displayName || user.email.split("@")[0];
       try {
@@ -383,17 +392,17 @@ window.addEventListener('scroll', () => {
       userNavbarAvatar.src = user.photoURL || `https://api.dicebear.com/7.x/pixel-art/svg?seed=${user.uid}`;
       dropdownProvider.textContent = user.providerData.length > 0 ? `via ${user.providerData[0].providerId}` : 'via Email';
     } else {
-      navLoginBtn.style.display = 'inline-block';
+      if (navLoginBtn) navLoginBtn.style.display = 'inline-block';
       if (navJoinBtn) navJoinBtn.style.display = 'inline-block';
       userDropdownWrapper.style.display = 'none';
-      if (authContainer) authContainer.style.display = 'block';
+      if (authContainerReplacement) authContainerReplacement.style.display = 'flex';
     }
   };
 
   const openAuthModal = () => {
     authModal.classList.add('active');
     authModal.setAttribute('aria-hidden', 'false');
-    switchPane('providers');
+    switchPane('signin');
     document.body.style.overflow = 'hidden';
   };
 
@@ -446,113 +455,128 @@ window.addEventListener('scroll', () => {
   }
 
   const handleOAuth = async (providerName) => {
-    let provider = providerName === 'google' ? new GoogleAuthProvider() : new GithubAuthProvider();
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      const collectionName = user.email && user.email.endsWith(allowedDomain) ? "users" : "external_users";
-      
-      const userDoc = await getDoc(doc(db, collectionName, user.uid));
-      if (!userDoc.exists()) {
-        if (collectionName === "users") {
-           await setDoc(doc(db, collectionName, user.uid), {
-             name: user.displayName || "No Name Provided",
-             email: user.email,
-             joinMethod: providerName,
-             hasPaid: false,
-             timestamp: new Date()
-           });
-           closeAuthModal();
-        } else {
-           showExternalDetailsForm({
-             uid: user.uid,
-             name: user.displayName || "No Name Provided",
-             email: user.email,
-             joinMethod: providerName
-           });
-        }
-      } else {
-        closeAuthModal();
-      }
-    } catch (error) {
-      alert("Error: " + error.message);
-    }
-  };
-
-  if (googleBtn) googleBtn.addEventListener('click', () => handleOAuth('google'));
-  // Removed GitHub button listener
-
-  
-  const forgotPasswordLink = document.getElementById("forgot-password-link");
-  if (forgotPasswordLink) {
-    forgotPasswordLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      const email = emailInput.value.trim();
-      if (!email) {
-        alert("Please enter your email address in the Email field first, then click 'Forgot Password?'.");
-        return;
-      }
-      sendPasswordResetEmail(auth, email)
-        .then(() => {
-          alert("Password reset email sent! Check your inbox.");
-        })
-        .catch((error) => {
-          alert("Error sending reset email: " + error.message);
-        });
-    });
-  }
-
-  if (signUpBtn) {
-    signUpBtn.addEventListener("click", async (e) => {
-      e.preventDefault();
-      if (passwordInput.value !== confirmPasswordInput.value) {
-        alert("Passwords do not match.");
-        return;
-      }
+      let provider = providerName === 'google' ? new GoogleAuthProvider() : new GithubAuthProvider();
       try {
-        const userCredential = await createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value);
-        const user = userCredential.user;
-        const providedName = nameInput && nameInput.value ? nameInput.value : "No Name Provided";
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        const collectionName = user.email && user.email.endsWith(allowedDomain) ? "users" : "external_users";
         
-        if (user.email.endsWith(allowedDomain)) {
-          await setDoc(doc(db, "users", user.uid), {
-            name: providedName,
-            email: user.email,
-            joinMethod: "Email/Password",
-            hasPaid: false,
-            timestamp: new Date()
-          });
-          alert("Account created and logged in!");
+        const userDoc = await getDoc(doc(db, collectionName, user.uid));
+        if (!userDoc.exists()) {
+          if (collectionName === "users") {
+             await setDoc(doc(db, collectionName, user.uid), {
+               name: user.displayName || "No Name Provided",
+               email: user.email,
+               joinMethod: providerName,
+               hasPaid: false,
+               timestamp: new Date()
+             });
+             closeAuthModal();
+          } else {
+             showExternalDetailsForm({
+               uid: user.uid,
+               name: user.displayName || "No Name Provided",
+               email: user.email,
+               joinMethod: providerName
+             });
+          }
         } else {
-          showExternalDetailsForm({
-             uid: user.uid,
-             name: providedName,
-             email: user.email,
-             joinMethod: "Email/Password"
-          });
+          closeAuthModal();
         }
       } catch (error) {
         alert("Error: " + error.message);
       }
-    });
-  }
+    };
+  
+    const googleBtnSignin = document.getElementById('auth-google-btn-signin');
+    const googleBtnSignup = document.getElementById('auth-google-btn-signup');
+    if (googleBtnSignin) googleBtnSignin.addEventListener('click', (e) => { e.preventDefault(); handleOAuth('google'); });
+    if (googleBtnSignup) googleBtnSignup.addEventListener('click', (e) => { e.preventDefault(); handleOAuth('google'); });
+  
+    const forgotPasswordLink = document.getElementById("forgot-password-link");
+    if (forgotPasswordLink) {
+      forgotPasswordLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        const email = signinEmailInput.value.trim();
+        if (!email) {
+          alert("Please enter your email address in the Email field first, then click 'Forgot Password?'.");
+          return;
+        }
+        sendPasswordResetEmail(auth, email)
+          .then(() => {
+            alert("Password reset email sent! Check your inbox.");
+          })
+          .catch((error) => {
+            alert("Error sending reset email: " + error.message);
+          });
+      });
+    }
 
-  if (signInBtn) {
-    signInBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
-        .then(() => alert("Signed in successfully!"))
-        .catch((error) => alert("Error: " + error.message));
-    });
-  }
+    if (signUpBtn) {
+      signUpBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (passwordInput.value !== confirmPasswordInput.value) {
+          alert("Passwords do not match.");
+          return;
+        }
+        try {
+          const userCredential = await createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value);
+          const user = userCredential.user;
+          const providedName = nameInput && nameInput.value ? nameInput.value : "No Name Provided";
+          
+          if (user.email.endsWith(allowedDomain)) {
+            await setDoc(doc(db, "users", user.uid), {
+              name: providedName,
+              email: user.email,
+              joinMethod: "Email/Password",
+              hasPaid: false,
+              timestamp: new Date()
+            });
+            alert("Account created and logged in!");
+            closeAuthModal();
+          } else {
+            showExternalDetailsForm({
+               uid: user.uid,
+               name: providedName,
+               email: user.email,
+               joinMethod: "Email/Password"
+            });
+          }
+        } catch (error) {
+          alert("Error: " + error.message);
+        }
+      });
+    }
+  
+    if (signInBtn) {
+      signInBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        signInWithEmailAndPassword(auth, signinEmailInput.value, signinPasswordInput.value)
+          .then(() => {
+            alert("Signed in successfully!");
+            closeAuthModal();
+          })
+          .catch((error) => alert("Error: " + error.message));
+      });
+    }
+  
+    if (openAuthModalBtn) {
+      openAuthModalBtn.addEventListener('click', () => {
+        openAuthModal();
+        switchPane('signin');
+      });
+    }
 
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      signOut(auth).then(() => alert("Logged out successfully.")).catch((error) => alert("Error logging out: " + error.message));
-    });
-  }
+    
+    if (navLoginBtn) { navLoginBtn.addEventListener('click', (e) => { e.preventDefault(); openAuthModal(); switchPane('signin'); }); }
+    if (navJoinBtn) { navJoinBtn.addEventListener('click', (e) => { e.preventDefault(); openAuthModal(); switchPane('signup'); }); }
+// Modal pane switchers
+    const switchToSignup = document.getElementById('switch-to-signup');
+    const switchToSignin = document.getElementById('switch-to-signin');
+    if (switchToSignup) switchToSignup.addEventListener('click', (e) => { e.preventDefault(); switchPane('signup'); });
+    if (switchToSignin) switchToSignin.addEventListener('click', (e) => { e.preventDefault(); switchPane('signin'); });
 
-  if (authCloseBtn) authCloseBtn.addEventListener('click', closeAuthModal);
+    if (authCloseBtn) authCloseBtn.addEventListener('click', closeAuthModal);
   authModal.addEventListener('click', (e) => {
     if (e.target === authModal) closeAuthModal();
   });
@@ -579,3 +603,5 @@ window.addEventListener('scroll', () => {
   }
 
 });
+
+
