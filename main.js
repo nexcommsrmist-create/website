@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -481,6 +481,26 @@ window.addEventListener('scroll', () => {
 
   if (googleBtn) googleBtn.addEventListener('click', () => handleOAuth('google'));
   // Removed GitHub button listener
+
+  
+  const forgotPasswordLink = document.getElementById("forgot-password-link");
+  if (forgotPasswordLink) {
+    forgotPasswordLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (!email) {
+        alert("Please enter your email address in the Email field first, then click 'Forgot Password?'.");
+        return;
+      }
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          alert("Password reset email sent! Check your inbox.");
+        })
+        .catch((error) => {
+          alert("Error sending reset email: " + error.message);
+        });
+    });
+  }
 
   if (signUpBtn) {
     signUpBtn.addEventListener("click", async (e) => {
